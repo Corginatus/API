@@ -1,6 +1,7 @@
 import fetch from "node-fetch";
+Error.stackTraceLimit = Infinity;
 
-fetch("https://spd-classif.gate.petersburg.ru/api/v2/datasets/139/versions/latest/data/569/")
+fetch("https://spb-classif.gate.petersburg.ru/api/v2/datasets/139/versions/latest/data/569/")
 .then(res => {
     if(res.ok){
         return res.json()
@@ -15,3 +16,4 @@ fetch("https://spd-classif.gate.petersburg.ru/api/v2/datasets/139/versions/lates
 ).catch(error =>{
     console.log(error)
 })
+//37.230.144.80:443
