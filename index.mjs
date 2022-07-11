@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 Error.stackTraceLimit = Infinity;
 
-fetch("https://spb-classif.gate.petersburg.ru/api/v2/datasets/139/versions/latest/data/569/")
+fetch("https://spb-classif.gate.petersburg.ru/api/v2/datasets/145/versions/latest/data/166/")
 .then(res => {
     if(res.ok){
         return res.json()

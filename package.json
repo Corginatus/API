@@ -2,6 +2,7 @@
   "name": "untitled",
   "version": "1.0.0",
   "dependencies": {
-    "node-fetch": "^3.2.6"
+    "node-fetch": "^3.2.6",
+    "xhr2": "^0.2.1"
   }
 }
