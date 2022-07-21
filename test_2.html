@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul></ul>
+
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script>
+
+    //https://oauth.vk.com/authorize?client_id=8223714&scope=friends,photos&redirect_uri=&response_type=code&v=5.52
+    //https://oauth.vk.com/authorize?client_id=8223714&display=page&redirect_uri=&scope=friends,photos&response_type=token&v=5.52
+
+    user_token = ''
+
+    getUserInfo()
+
+    function getUrl(method, params){
+        if (!method) throw new Error('No method');
+        params = params || {};
+        params['access_token'] = user_token
+        return 'https://api.vk.com/method/' + method + '?' + $.param(params)
+    }
+
+    function sendRequest(method, params, func) {
+        $.ajax({
+            url: getUrl(method, params),
+            method: 'GET',
+            dataType: 'JSONP',
+            success: func
+        });
+    }
+
+    function getUserInfo() {
+        sendRequest('account.getProfileInfo', {}, function (data) {
+            console.log(data)
+            drawPhoto(data.response)
+        });
+    }
+
+    function drawPhoto(data) {
+        var html = '';
+
+        html = '<li>' +
+            data +
+            '</li>';
+
+        $('ul').html(html)
+    }
+
+</script>
+
+</body>
+</html>
