@@ -2,6 +2,7 @@
   "name": "untitled",
   "version": "1.0.0",
   "dependencies": {
+    "@vkontakte/vk-bridge": "^2.7.0",
     "@vkontakte/vkui-connect": "^1.5.4",
     "jquery": "^3.6.0",
     "node-fetch": "^3.2.6",

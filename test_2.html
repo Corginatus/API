@@ -9,16 +9,31 @@
 <ul></ul>
 
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
 <script>
 
-    //https://oauth.vk.com/authorize?client_id=8223714&scope=friends,photos&redirect_uri=&response_type=code&v=5.52
-    //https://oauth.vk.com/authorize?client_id=8223714&display=page&redirect_uri=&scope=friends,photos&response_type=token&v=5.52
 
-    user_token = ''
+    import bridge from "@vkontakte/vk-bridge";
+
+    bridge.send("VKWebAppInit");
+    let user_token;
+
+    bridge.send('VKWebAppGetAuthToken', {
+            "app_id": 8223714,
+            "scope": "friends,status"
+        })
+        .then(data => {
+            console.log(data.access_token);
+            user_token = data.access_token
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
 
     getUserInfo()
 
-    function getUrl(method, params){
+    function getUrl(method, params, user_token){
         if (!method) throw new Error('No method');
         params = params || {};
         params['access_token'] = user_token
@@ -45,12 +60,11 @@
         var html = '';
 
         html = '<li>' +
-            data +
+            data + " HI" +
             '</li>';
 
         $('ul').html(html)
     }
-
 </script>
 
 </body>
